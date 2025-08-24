@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { API_CONFIG } from "@/config"
 
 interface Plant {
   _id: string
@@ -43,7 +44,7 @@ function CatalogContent() {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch("http://localhost:4000/api/categories")
+      const response = await fetch(`${API_CONFIG.BASE_URL}/categories`)
       const data = await response.json()
       setCategories(data)
     } catch (error) {
@@ -63,7 +64,7 @@ function CatalogContent() {
       if (searchQuery) params.append("q", searchQuery)
       if (selectedCategory !== "all") params.append("category", selectedCategory)
 
-      const response = await fetch(`http://localhost:4000/api/plants?${params}`)
+      const response = await fetch(`${API_CONFIG.BASE_URL}/plants?${params}`)
       const data = await response.json()
 
       setPlants(data.items)

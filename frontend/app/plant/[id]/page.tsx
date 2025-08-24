@@ -7,6 +7,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
+import { API_CONFIG } from "@/config"
 
 interface Plant {
   _id: string
@@ -34,7 +35,7 @@ export default function PlantDetailPage() {
 
   const fetchPlant = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:4000/api/plants/${id}`)
+      const response = await fetch(`${API_CONFIG.BASE_URL}/plants/${id}`)
       if (!response.ok) {
         throw new Error("Plant not found")
       }

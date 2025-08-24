@@ -1,5 +1,7 @@
 // API configuration and helper functions
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api"
+import { API_CONFIG } from "../config"
+
+const API_BASE_URL = API_CONFIG.BASE_URL
 
 export const api = {
   // Health check
@@ -22,7 +24,7 @@ export const api = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-admin-key": adminKey,
+        [API_CONFIG.ADMIN.KEY_NAME]: adminKey,
       },
       body: JSON.stringify(data),
     }),
@@ -32,7 +34,7 @@ export const api = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-admin-key": adminKey,
+        [API_CONFIG.ADMIN.KEY_NAME]: adminKey,
       },
       body: JSON.stringify(data),
     }),

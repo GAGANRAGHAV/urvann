@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { Switch } from "@/components/ui/switch"
+import { API_CONFIG } from "@/config"
 
 interface Plant {
   _id: string
@@ -47,7 +48,7 @@ export default function AdminPage() {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch("http://localhost:4000/api/categories")
+      const response = await fetch(`${API_CONFIG.BASE_URL}/categories`)
       const data = await response.json()
       setCategories(data)
     } catch (error) {
@@ -57,7 +58,7 @@ export default function AdminPage() {
 
   const fetchPlants = async () => {
     try {
-      const response = await fetch("http://localhost:4000/api/plants?limit=10&sort=-createdAt")
+      const response = await fetch(`${API_CONFIG.BASE_URL}/plants?limit=10&sort=-createdAt`)
       const data = await response.json()
       setPlants(data.items)
     } catch (error) {
@@ -110,11 +111,11 @@ export default function AdminPage() {
         image: formData.image,
       }
 
-      const response = await fetch("http://localhost:4000/api/plants", {
+      const response = await fetch(`${API_CONFIG.BASE_URL}/plants`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-admin-key": adminKey,
+          [API_CONFIG.ADMIN.KEY_NAME]: adminKey,
         },
         body: JSON.stringify(plantData),
       })
