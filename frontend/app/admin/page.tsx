@@ -146,8 +146,11 @@ export default function AdminPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-                <Label htmlFor="adminKey" className="font-mono text-white pb-2">
-                  Admin Key
+                <Label htmlFor="adminKey" className="font-mono text-white pb-2 flex items-center">
+                  Admin Key&nbsp;
+                  <span className="text-[#e2f89c] font-mono text-xs bg-[#072524]/40 px-2 py-1 rounded">
+                    (admin123)
+                  </span>
                 </Label>
               <Input
                 id="adminKey"
